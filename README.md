@@ -26,12 +26,12 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
-- number guessing game
+   - number guessing game
 - [ ] Detail which bugs you found.
-- when guess a lower number that the secret number, the hint is wrong and tells you to go lower
-- when guess a higher number that the secret number, the hint is wrong and tells you to go higher
-- hard mode on the game difficulty makes it easier since it gives a smaller range
-  - normal mode has more chances to guess than hard mode
+   - when guess a lower number that the secret number, the hint is wrong and tells you to go lower
+   - when guess a higher number that the secret number, the hint is wrong and tells you to go higher
+   - hard mode on the game difficulty makes it easier since it gives a smaller range
+   - normal mode has more chances to guess than hard mode
       
 - [ ] Explain what fixes you applied.
 
