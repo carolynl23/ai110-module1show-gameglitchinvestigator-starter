@@ -5,16 +5,26 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+  - number guessing game 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  - when guess a lower number that the secret number, the hint is wrong and tells you to go lower
+  - when guess a higher number that the secret number, the hint is wrong and tells you to go higher
+  - hard mode on the game difficulty makes it easier since it gives a smaller range
+  - normal mode has more chances to guess than hard mode
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+  - copilot
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+  - copilot suggested: "Ensure "Normal" has fewer guesses than "Easy", and "Hard" has the fewest."
+  - Changing the guessing chance limit to a higher number (10) for easy and a lower nunmber for hard (5)
+  - increasing number range for hard mode from a lower number to 500
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+-   
 
 ---
 
