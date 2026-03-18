@@ -24,7 +24,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   - Changing the guessing chance limit to a higher number (10) for easy and a lower nunmber for hard (5)
   - increasing number range for hard mode from a lower number to 500
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
--   
+  - 
 
 ---
 

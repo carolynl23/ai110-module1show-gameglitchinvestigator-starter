@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+from logic_utils import check_guess, get_range_for_difficulty, parse_guess, update_score
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -14,20 +15,19 @@ def get_range_for_difficulty(difficulty: str):
 def parse_guess(raw: str):
     if raw is None:
         return False, None, "Enter a guess."
-
-    if raw == "":
-        return False, None, "Enter a guess."
-
     try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
-    except Exception:
-        return False, None, "That is not a number."
+        guess = int(raw)
+        return True, guess, ""
+    except ValueError:
+        return False, None, "Invalid input. Enter a number."
 
-    return True, value, None
-
+def get_hint(guess: int, secret: int):
+    if guess < secret:
+        return "📈 Go HIGHER!"
+    elif guess > secret:
+        return "📉 Go LOWER!"
+    else:
+        return "Correct!"
 
 def check_guess(guess, secret):
     if guess == secret:
@@ -35,16 +35,16 @@ def check_guess(guess, secret):
 
     try:
         if guess < secret:
-            return "Too High", "📈 Go HIGHER!"
+            return "Too Low", "📈 Go HIGHER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            return "Too High", "📉 Go LOWER!"
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+        if g < secret:
+            return "Too Low", "📈 Go HIGHER!"
+        return "Too High", "📉 Go LOWER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -82,6 +82,7 @@ attempt_limit_map = {
     "Normal": 8,
     "Hard": 5,
 }
+
 attempt_limit = attempt_limit_map[difficulty]
 
 low, high = get_range_for_difficulty(difficulty)
@@ -186,6 +187,18 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+
+def reset_game():
+    min_val, max_val = get_range_for_difficulty(st.session_state.difficulty)
+    st.session_state.secret = random.randint(min_val, max_val)
+    st.session_state.attempts = 1
+    st.session_state.history = []
+    st.session_state.status = "playing"
+
+# After win/loss:
+if st.session_state.status in ("won", "lost"):
+    if st.button("Play Again"):
+        reset_game()
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
